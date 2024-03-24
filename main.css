@@ -9,8 +9,8 @@ body {
 }
 
 .ball {
-  width: min(74vh, 74vw);
-  height: min(74vh, 74vw);
+  width: min(90vh, 90vw);
+  height: min(90vh, 90vw);
   background-color: black;
   border-radius: 50%;
   overflow: hidden;
@@ -19,7 +19,9 @@ body {
   justify-content: center;
   align-items: center;
   transform-origin: center;
-  box-shadow: 50px 200px 60px rgba(0, 0, 0, 0.8);
+  box-shadow: 50px 80px 60px rgba(0, 0, 0, 0.9);
+  user-select: none;
+  cursor: grab;
 }
 
 .rotate-div {
@@ -30,7 +32,13 @@ body {
   align-items: center;
   transform-style: preserve-3d;
   position: relative;
-  animation: rotate 6s linear infinite;
+  transform: rotateY(360deg);
+  transition: all 3s linear;
+  /* animation: rotate 6s linear infinite; */
+}
+
+.rotate-div.active {
+  transform: rotateY(180deg);
 }
 
 .number-8 {
@@ -47,7 +55,7 @@ body {
   font-family: "Orbitron", sans-serif;
   border-radius: 50%;
   font-size: min(20vh, 20vw);
-  transform: rotateY(0deg) translateZ(min(38vh, 38vw))  translate(-50%, -50%);
+  transform: rotateY(0deg) translateZ(min(45vh, 45vw))  translate(-50%, -50%);
 }
 
 .number-8::before {
@@ -75,7 +83,7 @@ body {
   align-items: center;
   transform-style: preserve-3d;
   border-radius: 50%;
-  transform:  translate(-50%, -50%) rotateY(180deg) translateZ(min(38vh, 38vw));
+  transform:  translate(-50%, -50%) rotateY(180deg) translateZ(min(45vh, 45vw));
 }
 
 .message-circle::before {
@@ -90,6 +98,14 @@ body {
   transform: translateZ(-1px) translate(-50%, -50%) rotateY(180deg);
 }
 
+.triangle {
+  width: 0;
+  height: 0;
+  border-top: min(20vh, 20vw) solid blue;
+  border-left: min(10vh, 10vw) solid transparent;
+  border-right: min(10vh, 10vw) solid transparent;
+}
+
 .light-spot {
   width: 40%;
   height: 40%;
@@ -102,23 +118,27 @@ body {
   filter: blur(80px);
 }
 
+.disabled {
+  pointer-events: none;
+}
+
 @keyframes rotate {
   0% {
     transform: perspective(2000px) rotateY(360deg);
   }
   100% {
-    transform: perspective(2000px) rotateY(0deg);
+    transform: perspective(2000px) rotateY(180deg);
   }
 }
 
 @media (max-width: 600px) and (min-width: 401px) {
   .light-spot {
-    filter: blur(50px);
+    filter: blur(60px);
   }
 }
 
 @media (max-width: 400px) {
   .light-spot {
-    filter: blur(30px);
+    filter: blur(40px);
   }
 }
