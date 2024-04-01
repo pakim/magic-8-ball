@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -6,6 +10,7 @@ body {
   align-items: center;
   height: 100vh;
   box-sizing: border-box;
+  background-image: radial-gradient(circle, white, black 85%)
 }
 
 .ball {
@@ -34,7 +39,6 @@ body {
   position: relative;
   transform: rotateY(360deg);
   transition: all 3s linear;
-  /* animation: rotate 6s linear infinite; */
 }
 
 .rotate-div.active {
@@ -64,8 +68,8 @@ body {
   top: 50%;
   left: 50%;
   background-color: black;
-  width: 110%;
-  height: 110%;
+  width: 140%;
+  height: 140%;
   transform-style: preserve-3d;
   transform: rotateY(0deg) translateZ(-1px) translate(-50%, -50%);
 }
@@ -76,8 +80,8 @@ body {
   left: 50%;
   background-color: black;
   border: 8px solid #222;
-  width: 40%;
-  height: 40%;
+  width: 45%;
+  height: 45%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -101,9 +105,18 @@ body {
 .triangle {
   width: 0;
   height: 0;
-  border-top: min(20vh, 20vw) solid blue;
-  border-left: min(10vh, 10vw) solid transparent;
-  border-right: min(10vh, 10vw) solid transparent;
+  /* Using borders to create a triangle object */
+  border-top: min(25vh, 25vw) solid blue;
+  border-left: min(15vh, 15vw) solid transparent;
+  border-right: min(15vh, 15vw) solid transparent;
+  position: absolute;
+  top: 25%;
+  opacity: 0;
+  transition: opacity 2s linear;
+}
+
+.triangle.active {
+  opacity: 1;
 }
 
 .light-spot {
@@ -122,13 +135,29 @@ body {
   pointer-events: none;
 }
 
-@keyframes rotate {
-  0% {
-    transform: perspective(2000px) rotateY(360deg);
-  }
-  100% {
-    transform: perspective(2000px) rotateY(180deg);
-  }
+.message {
+  height: min(25vh, 25vw);
+  width: min(30vh, 30vw);
+  /* Using the clip-path property to transform the div into a triangle */
+  clip-path: polygon(0% 0%, 50% 100%, 100% 0%);
+  position: absolute;
+  top: 25%;
+  padding: 5px min(4vw, 4vh);
+  opacity: 0;
+  transition: opacity 2s linear;
+}
+
+.message.active {
+  opacity: 1;
+}
+
+.message p {
+  text-align: center;
+  color: #fff;
+  font-size: min(3vh, 3vw);
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
 }
 
 @media (max-width: 600px) and (min-width: 401px) {
